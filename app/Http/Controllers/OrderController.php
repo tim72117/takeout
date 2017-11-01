@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Order;
 use App\Material;
+use App\Product;
 
 class OrderController extends Controller
 {
@@ -61,6 +62,8 @@ class OrderController extends Controller
 
     public function products()
     {
-        
+        $products =  Product::all();
+
+        return ['products' => $products];
     }
 }

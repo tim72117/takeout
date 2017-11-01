@@ -18,16 +18,9 @@ Route::get('/', function () {
 Route::get('/', 'OrderController@index');
 Route::get('orders', 'OrderController@all');
 Route::get('materials', 'OrderController@materials');
-Route::get('products', 'OrderController@products');
+Route::get('api/products', 'OrderController@products');
 Route::post('checkout', 'OrderController@checkout');
 
-
-Route::get('products', function () {
-
-    $products =  App\Product::all();
-
-    return ['products' => $products];
-});
 
 Route::get('buy', 'CustomerController@buy');
 Route::post('buy/checkout', 'CustomerController@checkout');
