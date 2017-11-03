@@ -21,6 +21,14 @@ Route::get('materials', 'OrderController@materials');
 Route::get('api/products', 'OrderController@products');
 Route::post('checkout', 'OrderController@checkout');
 
+Route::post('api/products', function(Illuminate\Http\Request $request) {
+    $product = App\Product::create($request->get('newProduct'));
+    return ['product' => $product];
+});
+
+Route::delete('api/products/{id}', function($id) {
+    return ['deleted' => App\Product::find($id)->delete()];
+});
 
 Route::get('buy', 'CustomerController@buy');
 Route::post('buy/checkout', 'CustomerController@checkout');
