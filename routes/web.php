@@ -18,17 +18,15 @@ Route::get('/', function () {
 Route::get('/', 'OrderController@index');
 Route::get('orders', 'OrderController@all');
 Route::get('materials', 'OrderController@materials');
-Route::get('api/products', 'OrderController@products');
 Route::post('checkout', 'OrderController@checkout');
 
-Route::post('api/products', function(Illuminate\Http\Request $request) {
-    $product = App\Product::create($request->get('newProduct'));
-    return ['product' => $product];
-});
+Route::get('api/category/{id}/products', 'ProductController@index');
+Route::post('api/category/{id}/products', 'ProductController@create');
+Route::delete('api/products/{id}', 'ProductController@destroy');
 
-Route::delete('api/products/{id}', function($id) {
-    return ['deleted' => App\Product::find($id)->delete()];
-});
+Route::get('api/categories', 'CategoryController@index');
+Route::post('api/categories', 'CategoryController@create');
+Route::delete('api/categories/{id}', 'CategoryController@destroy');
 
 Route::get('buy', 'CustomerController@buy');
 Route::post('buy/checkout', 'CustomerController@checkout');
