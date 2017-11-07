@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class CartController extends Controller
 {
@@ -13,17 +14,17 @@ class CartController extends Controller
      */
     public function index()
     {
-        //
+        return ['products' => Auth::user()->cart()->firstOrCreate([])->products];
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show) the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return Auth::user()->cart()->firstOrCreate([])->products()->attach($request->input('id'));
     }
 
     /**
@@ -79,6 +80,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return ['deleted' => Auth::user()->cart()->firstOrCreate([])->products()->detach($id)];
     }
 }

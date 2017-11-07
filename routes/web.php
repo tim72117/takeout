@@ -28,6 +28,10 @@ Route::get('api/categories', 'CategoryController@index');
 Route::post('api/categories', 'CategoryController@create');
 Route::delete('api/categories/{id}', 'CategoryController@destroy');
 
+Route::get('api/cart/products', 'CartController@index');
+Route::post('api/cart/products', 'CartController@create');
+Route::delete('api/cart/products/{id}', 'CartController@destroy');
+
 Route::get('buy', 'CustomerController@buy');
 Route::post('buy/checkout', 'CustomerController@checkout');
 
